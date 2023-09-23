@@ -17,3 +17,12 @@ single and double quote are both strings
 print("Marvel")
 # is same as
 print('Marvel')
+
+"""
+case sensitivity
+"""
+a = "not A"
+A = "not a"
+print(a)
+# not same as
+print(A)
