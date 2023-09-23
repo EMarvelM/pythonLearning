@@ -31,8 +31,10 @@ unpacking values to variables
 """
 colection = ["This", "is", "list"]
 x, y, z = colection
-print(x, y, z)
-
-colection = {"This", "is", "tuple"}
+#this will have a newline at the middle
+print(x)
+print(y)
+print(z)
+colection = {"This", "is", "tuple"}#always random lolz
 x, y, z = colection
-print(x, y, z)
+print(x, y, z)#this will not have a newline at the middle
