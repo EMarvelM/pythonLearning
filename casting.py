@@ -9,3 +9,11 @@ The below will be used ti get the types of variables
 print(type(x))
 print(type(z))
 print(type(y))
+
+"""
+single and double quote are both strings
+"""
+
+print("Marvel")
+# is same as
+print('Marvel')
