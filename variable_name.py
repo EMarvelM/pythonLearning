@@ -17,3 +17,11 @@ x, y, z = "First", "Second", "Last"
 print(x)
 print(y)
 print(z)
+
+"""
+Assigning one value to different variables
+"""
+x = y = z = "All the same"
+print(x)
+print(y)
+print(z)
