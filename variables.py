@@ -7,3 +7,9 @@ if 2 < 5:
 # indent doesnt matter how many space required not in same box
 if 5 > 2:
   print(name)
+
+"""
+This is a comment
+that I have
+writtn in more than one line
+"""
