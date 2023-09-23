@@ -31,11 +31,8 @@ unpacking values to variables
 """
 colection = ["This", "is", "list"]
 x, y, z = colection
-print(x)
-print(y)
-print(z)
+print(x, y, z)
+
 colection = {"This", "is", "tuple"}
 x, y, z = colection
-print(x)
-print(y)
-print(z)
+print(x, y, z)
