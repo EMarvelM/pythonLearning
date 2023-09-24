@@ -9,3 +9,12 @@ def func():
 print (x + 1)
 
 func()
+
+def myfun():
+    global name
+    name = "EMarvel"
+
+myfun()
+
+# print the global variable declared in the function
+print(name)
