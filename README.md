@@ -52,3 +52,7 @@ cd pythonLearning
 ```bash
 python script_name.py
 ```
+
+## Contributing
+
+Contributions to this repository are welcome! If you have additional Python scripts, improvements, or corrections to existing scripts, feel free to create a pull request.
