@@ -36,3 +36,13 @@ To get started with these Python scripts, make sure you have Python installed on
 - **scores.py**: Calculating the average of two numbers.
 - **variable_name.py**: Explanation of variable naming conventions.
 - **variables.py**: Introduction to variables in Python with a multiline comment.
+
+## Usage
+
+You can clone this repository to your local machine to explore and run the Python scripts. Each script is well-commented to explain its purpose and usage.
+
+```bash
+git clone https://github.com/EMarvelM/pythonLearning.git
+cd pythonLearning
+python script_name.py
+```
