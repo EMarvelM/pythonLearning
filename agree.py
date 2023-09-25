@@ -1,3 +1,4 @@
+"""
 answer = input("Do you agree(Y/N)? ")
 if answer.lower() == 'y':
     print("Agreed")
@@ -15,13 +16,15 @@ elif answer == 'n' or answer == 'N':
     print("Not Agreed")
 else:
     print("Not understood")
-
+"""
 #OR
 
 answer = input("Do you agree(Y/N)? ")
-if answer in ["Y", "y"]:
+answer = answer.lower()
+
+if answer in ["y", "yes"]:
     print("Agreed")
-elif answer in ["N", 'n']:
+elif answer in ["n", "No"]:
     print("Not Agreed")
 else:
     print("Not Understood")
