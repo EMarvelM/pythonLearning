@@ -2,4 +2,6 @@
 x = int(input("x: "))
 y = int(input("y: "))
 
-print(x + y)
+z = x / y
+#print(x + y)
+print(z)
