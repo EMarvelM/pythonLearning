@@ -9,3 +9,8 @@ This repository contains a collection of Python scripts and examples created as 
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Getting Started
+
+To get started with these Python scripts, make sure you have Python installed on your computer. You can download Python from [python.org](https://www.python.org/downloads/).
+
