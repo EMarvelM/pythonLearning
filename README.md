@@ -43,6 +43,10 @@ You can clone this repository to your local machine to explore and run the Pytho
 
 ```bash
 git clone https://github.com/EMarvelM/pythonLearning.git
+```
+```bash
 cd pythonLearning
+```
+```bash
 python script_name.py
 ```
