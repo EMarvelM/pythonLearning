@@ -10,8 +10,12 @@ print (x + 1)
 
 func()
 
+
+name = "Unknown"
+
 def myfun():
     global name
+#after been declared changed the name of a global variable
     name = "EMarvel"
 
 myfun()
