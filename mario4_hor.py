@@ -1,7 +1,12 @@
 #!/usr/bin/python3
+j = 1
 for i in range(4):
-    print("?", end="!")
-print()
+    k = 0
+    for k in range(j):
+        print("#", end="")
+    j += 1
 
-#same as
+    print()
+
+
 print("?" * 4)
