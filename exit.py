@@ -1,3 +1,4 @@
+#to have acess the exit i'll import sys
 import sys
 
 #if the user does type a command line argument
