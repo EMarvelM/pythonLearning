@@ -6,6 +6,8 @@ names = ["Marvel", "David", "Daniel", "Moses", "Micheal"]
 name = input("What name would you wanna search for? ")
 
 for n in names:
+    n = n.lower()
+    name = name.lower()
     if n == name:
         print(f"\"{name}\" found!")
         sys.exit(0)
