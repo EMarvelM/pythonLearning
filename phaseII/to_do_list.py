@@ -10,7 +10,28 @@ prior = ["High", "Low", "Medium"]
 
 def main():
     chosen = welcome()
-    
+    if chosen in yes:
+        i = 0
+        while True:
+            new_title= input("Title: ")
+            task = input("Description: ")
+            while True:
+                prio = input("Priority: ")
+                prio = prio.capitalize()
+                if prio in prior:
+                    break
+
+            priority.append(prio)
+            if i == 0:
+                lists = {new_title: task}
+            else:
+                lists[new_title] = task
+            i = 1
+            for title in lists:
+                print()
+                print(f"{i}. {title.upper()}:", f"priority: {priority[i - 1]}")
+                print(" " * (len(title) + 5) + f"{lists[title]}", end="\n\n")
+                i += 1
 
 
 
