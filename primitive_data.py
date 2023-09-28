@@ -13,3 +13,7 @@ print(var_1)
 print(var_2)
 print(var_3)
 
+var = False
+
+print(var)
+print(type(var))
