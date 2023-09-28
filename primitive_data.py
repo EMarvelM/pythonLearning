@@ -14,6 +14,7 @@ print(var_2)
 print(var_3)
 
 var = False
+var = 1 < 3
 
 print(var)
 print(type(var))
