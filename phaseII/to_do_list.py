@@ -21,15 +21,20 @@ def main():
             while True:
                 new_title = input("Title: ")
                 if new_title in start.values():
-                    next(new_title, lists)
+                    checked = next(new_title, lists)
+                    break
                 if len(new_title) < 30:
                     break
                 print("Title cannot be more than 30 characters")
+            if new_title in start.values():
+                print("\nUpdated list")
+                continue
             while True:
                 task = input("Description: ")
                 if len(task) > 5:
                     break
                 print("Description too short\nTry again!")
+
             while True:
                 prio = input("Priority: ")
                 prio = prio.capitalize()
@@ -80,10 +85,10 @@ def next(check, lists):
         main()
     elif check == "remove":
         i = 1
-        print("S/No" + " " * 3 + "TITLE" + " " * 35 + "DESCRIPTION")
+        print("S/No" + " " * 3 + "TITLE" + " " * 36 + "DESCRIPTION")
         for new in lists:
             print(i, end=" " * 6)
-            print(f"{new}", end=" " * (35 - len(new)))
+            print(f"{new}", end=" " * (35 + len(new)))
             print(lists[new])
             i += 1
 
@@ -92,10 +97,16 @@ def next(check, lists):
         for lis in lists:
             j += 1
             if j == remover:
-                lists[lis] = []#TODO: DELETE THE LIST
+                del(lists[lis])
+                break
+    if check in start:
+        return check
+    else:
+        return None
 
 
 #def remove():
 #def preview():
 
-main()
+if __name__ == "__main__":
+    main()
