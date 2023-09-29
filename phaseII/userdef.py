@@ -36,3 +36,5 @@ def ifint(x):
     else:
         #print("Not integer")
         return -1
+
+def lenint:
