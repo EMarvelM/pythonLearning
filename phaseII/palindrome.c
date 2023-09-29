@@ -12,6 +12,10 @@ bool isPalindrome(int x){
         z = z * 10;
         z += y;
 
-
+        if (x == 0)
+                if (z == copy)
+                    return (true);
+                else
+                    return (false);
     }
 }
