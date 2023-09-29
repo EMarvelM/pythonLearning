@@ -3,7 +3,11 @@
 def leni(ch):
     if ch == 0:
         return 0
-    
+    while True:
+        #n = ch / 10
+
+        if ifint(ch) == 0:
+
 def ifint(x):
     y = 0
     int(y)
