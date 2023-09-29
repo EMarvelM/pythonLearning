@@ -37,4 +37,7 @@ def ifint(x):
         #print("Not integer")
         return -1
 
-def lenint:
+def lenint(x):
+    y = str(x)
+    y = str(len(y))
+    return y
