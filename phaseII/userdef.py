@@ -38,9 +38,11 @@ def ifint(x):
         return -1
 
 def lenint(x):
+    z = ""
     if x == 0:
         return 0
-
+    if type(x) == type(z):
+        return -1
 # x = 239430974
     x = str(x)
     return len(x)
