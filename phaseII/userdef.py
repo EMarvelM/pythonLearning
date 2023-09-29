@@ -41,8 +41,6 @@ def lenint(x):
     if x == 0:
         return 0
 
-    y = str(x)
-    if type(x) == type(y):
-        return -1
-    y = str(len(y))
-    return y
+# x = 239430974
+    x = str(x)
+    return len(x)
