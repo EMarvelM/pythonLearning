@@ -2,7 +2,9 @@ bool isPalindrome(int x){
     int y, copy;
     unsigned int z = 0;
 
-
+    if (x < 0)
+        return (false);
+    copy = x;
 
     while (1)
     {
