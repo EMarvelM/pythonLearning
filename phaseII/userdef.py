@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+def leni(ch):
+
 def ifint(x):
     y = 0
     int(y)
