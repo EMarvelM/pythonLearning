@@ -1,4 +1,10 @@
 #include <stdbool.h>
+bool isPalindrome(int x);
+
+int main(void)
+{
+    
+}
 
 bool isPalindrome(int x){
     int y, copy;
