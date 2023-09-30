@@ -1,10 +1,15 @@
 #include <stdbool.h>
+#include <stdio.h>
+
 bool isPalindrome(int x);
 
 int main(void)
 {
     bool check;
+
     check = isPalindrome(2345432);
+    printf("%d\n", check);
+
     return (0);
 }
 
@@ -25,9 +30,15 @@ bool isPalindrome(int x){
         z += y;
 
         if (x == 0)
-                if (z == copy)
-                    return (true);
+        {
+                if (z == (unsigned int)copy)
+                {
+                        return (true);
+                }
                 else
+                {
                     return (false);
+                }
+        }
     }
 }
