@@ -3,7 +3,9 @@ bool isPalindrome(int x);
 
 int main(void)
 {
-    
+    bool check;
+    check = isPalindrome(2345432);
+    return (0);
 }
 
 bool isPalindrome(int x){
