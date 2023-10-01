@@ -21,6 +21,7 @@ bool isPalindrome(int x){
         return (false);
     copy = x;
 
+
     while (1)
     {
         y = x % 10;
