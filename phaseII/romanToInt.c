@@ -16,7 +16,7 @@ int main(void)
 
 int romanToInt(char * s){
     /*check the values*/
-    int i = 0, j;
+    int i = 0, j, valid = -1;
 
     char roman[] = "IVXLCDM";
 
@@ -26,10 +26,16 @@ int romanToInt(char * s){
         {
             if (s[i] == roman[j])
             {
-                printf("%c  ", s[i]);
-                printf("%c\n", roman[j]);
+                valid = 0;
+                /*printf("%c  ", s[i]);
+                printf("%c\n", roman[j]);*/
             }
         }
+        if (valid == -1)
+        {
+            exit(1);
+        }
+        valid = -1;
         i++;
     }
     if (i > 15)
