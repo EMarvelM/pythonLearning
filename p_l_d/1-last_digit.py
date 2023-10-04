@@ -2,8 +2,11 @@
 import random
 
 number = random.randint(-1000, 1000)
-
-lnumber = number%10
+if number < 0:
+    _number = -(number)
+    lnumber = _number%10
+else:
+    lnumber = number%10
 
 print(f"Last digit of {number} is {lnumber:d} ")
 if lnumber > 5:
