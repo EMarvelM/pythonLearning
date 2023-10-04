@@ -4,9 +4,7 @@ def uppercase(str):
     for c in str:
         if ord(c) == ord(" "):
             print(" ", end="")
-        elif ord(c) in range(65, 91):
-            print(chr(ord(c)), end="")
-        elif ord(c) in range(48, 58):
+        elif ord(c) in range(65, 91) and ord(c) in range(48, 58):
             print(chr(ord(c)), end="")
         elif ord(c) in range(97, 123):
             print(chr(ord(c) - (97 - 65)), end="")
