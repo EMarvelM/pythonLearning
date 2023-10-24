@@ -30,67 +30,63 @@ unsigned int romanToInt(char * s){
     {
         for (j = 0; roman[j] != '\0'; j++)
         {
-            if (s[i] == roman[j])
-            {
-                /*test*/
-                printf("%c  %c\n", s[i], roman[j]);
 
-                valid += 1;
-                switch (s[i]){
-                    case 'M':
-                    {
-                        total += 1000;
-                    }
-                    break;
+            /*test*/
+            printf("%c  %c\n", s[i], roman[j]);
 
-                    case 'C':
-                    if (s[i + 1] == 'M')
-                    {
-                        total += 900;
-                        i += 2;
-                        valid++;
-                    }
-                    else
-                        total += 100;
-                    break;
-
-                    case 'X':
-                    if (s[i + 1] == 'C')
-                    {
-                        total += 90;
-                        i += 2;
-                        valid++;
-                    }
-                    else
-                        total += 10;
-                    break;
-
-                    case 'I':
-                    if (s[i + 1] == 'X')
-                    {
-                        total += 9;
-                        i += 2;
-                        valid++;
-                    }
-                    else if (s[i + 1] == 'V')
-                    {
-                        total += 4;
-                        i += 2;
-                        valid++;
-                    }
-                    else
-                        total += 1;
-                    break;
-
+            valid += 1;
+            switch (s[i]){
+                case 'M':
+                {
+                    total += 1000;
                 }
+                break;
 
+                case 'C':
+                if (s[i + 1] == 'M')
+                {
+                    total += 900;
+                    i += 2;
+                    valid++;
+                }
+                else
+                    total += 100;
+                break;
+
+                case 'X':
+                if (s[i + 1] == 'C')
+                {
+                    total += 90;
+                    i += 2;
+                    valid++;
+                }
+                else
+                    total += 10;
+                break;
+
+                case 'I':
+                if (s[i + 1] == 'X')
+                {
+                    total += 9;
+                    i += 2;
+                    valid++;
+                }
+                else if (s[i + 1] == 'V')
+                {
+                    total += 4;
+                    i += 2;
+                    valid++;
+                }
+                else
+                    total += 1;
+                break;
+
+                default:
+                exit(1);
+                break;
             }
+
         }
-        if (valid < 1)
-        {
-            exit(-1);
-        }
-        valid--;
         i++;
     }
     if (i > 15)

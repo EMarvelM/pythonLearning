@@ -1,0 +1,175 @@
+#!/bin/bash
+
+# Function to clear the last line
+clear_last_line() {
+    tput cuu1
+    tput el
+}
+
+clear -x
+# Messages to display
+messages=("Checking for inotifywait." "Checking for inotifywait.." "Checking for inotifywait..." "Checking for inotifywait." "Checking for inotifywait.." "Checking for inotifywait...")
+
+# Check if inotifywait is installed
+if ! command -v inotifywait &>/dev/null; then
+    # Loop through the messages and display them with animation
+    for message in "${messages[@]}"; do
+        clear_last_line
+        echo "$message"
+        sleep 1
+    done
+
+    echo "inotifywait is not installed."
+
+    # Prompt the user for confirmation
+    read -p "Do you want to install inotifywait? (yes/no): " choice
+
+    if [[ "$choice" =~ ^[Yy][Ee][Ss]$ ]]; then
+        echo "Installing inotifywait..."
+
+        # Use your package manager to install inotify-tools
+        # This example uses apt-get for Debian-based systems like Ubuntu
+        # You may need to modify it for other package managers like yum or dnf.
+        # Check if the user has sufficient permissions
+        if [ "$(id -u)" -ne 0 ]; then
+            echo -e "${RED}Error: This script requires root (sudo) permissions to copy files to $destination_dir.${NC}"
+            exit 1
+        fi
+        sudo apt-get update
+        sudo apt-get install -y inotify-tools
+
+        # Check if the installation was successful
+        if [ $? -eq 0 ]; then
+            echo "inotifywait has been successfully installed."
+        else
+            echo "Failed to install inotifywait. Please install it manually."
+            exit 1
+        fi
+    else
+        echo "Installation canceled. inotifywait is not installed."
+        exit 1
+    fi
+else
+    echo "inotifywait is already installed."
+    sleep 2.5
+    clear_last_line
+
+fi
+
+# Check if at least one filename is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Error: Please provide at least one filename as an argument."
+    exit 1
+fi
+
+# Function to continuously monitor changes from the last push
+# Function to continuously monitor changes from the last push
+monitor_changes_last_push() {
+    local filename="$1"
+
+    # Get the SHA-1 hash of the last push
+    last_push_sha=$(git rev-parse --abbrev-ref origin/$(git branch --show-current))
+
+    # Check if the file has changes since the last push
+    changes=$(git diff --name-only "$last_push_sha" -- "$filename")
+
+    # Return the list of changed files
+    echo "$changes"
+}
+
+
+
+
+# Function to handle the commit process for a file
+commit_file_changes() {
+    local filename="$1"
+    local commit_message
+
+    # Start monitoring changes using inotifywait in the background
+    (
+        inotifywait -q -e modify "$filename"
+    ) &
+
+    # Prompt the user for a commit message
+    read -p "Enter a commit message for '$filename': " commit_message
+
+    # Wait for changes to occur
+    wait
+
+    # Get the hash of the last git add point
+    last_git_add_hash=$(git rev-parse HEAD@{1})
+
+    # Compare the current state of the file to the state of the file at the last git add point
+    changes=$(git diff "$last_git_add_hash" --stat "$filename")
+
+    if [ -n "$changes" ]; then
+        echo "Changes detected since last git add. Restarting the process."
+        commit_file_changes "$filename"  # Recursively call the function to retry
+    else
+        # Commit the changes with the provided message
+        git commit -m "$commit_message"
+        # Push the changes to the remote repository
+        git push
+        echo "Changes for '$filename' have been committed and pushed."
+    fi
+}
+
+
+
+# Loop through provided filenames
+for filename in "$@"; do
+    # Check if the file exists
+    if [ ! -e "$filename" ]; then
+        echo "Error: File '$filename' does not exist."
+        exit 1
+    fi
+
+    # Check if the file has changes from the last push
+    changes=$(monitor_changes_last_push "$filename")
+
+    if [ -n "$changes" ]; then
+        # Add changes to the Git staging area
+        git add "$filename"
+
+        # Commit the changes
+        commit_file_changes "$filename"
+        if [ $? -eq 1 ]; then
+            continue  # Restart the process for this file
+        fi
+
+        # Push the changes to the remote repository
+        git push
+
+        echo "Changes for '$filename' have been committed and pushed."
+    else
+        echo "No changes detected for '$filename' since the last push."
+    fi
+done
+
+
+# Continuously monitor for changes in specified files until terminated
+while true; do
+    for filename in "$@"; do
+        # Use inotifywait to monitor file system events
+        inotifywait -q -e modify "$filename"
+
+        # Check if the file has changes from the last push
+        changes=$(monitor_changes_last_push "$filename")
+        if [ -n "$changes" ]; then
+            # Add changes to the Git staging area
+            git add "$filename"
+
+            # Commit the changes
+            commit_file_changes "$filename"
+            if [ $? -eq 1 ]; then
+                continue  # Restart the process for this file
+            fi
+
+            # Push the changes to the remote repository
+            git push
+
+            echo "Changes for '$filename' have been committed and pushed."
+        fi
+    done
+done
+
