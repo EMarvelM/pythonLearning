@@ -2,24 +2,48 @@
 
 """Todo list class and engine"""
 import json
+import os
 
-class Todo(object):
+class TodoObject(object):
     _file = "file.json"
 
     def __init__(self):
         off_set = None
         title = None
-        Description = None
-        Priority = None
+        description = None
+        priority = None
+
+        self.reload()
+        self.update()
 
     def to_dict(self):
         return self.__dict__
 
     def reload(self):
-        with open(self._file, "r") as file:
-            content = file.read()
-            json.load(content)
-            
+        if os.path.isfile(self._file):
+            with open(self._file, "r") as file:
+                # content = file.read()
+                self._object = json.load(file)
+        else:
+            self._object = None
+
+
+    def update(self):
+        i = 1
+        if self._object:
+            while True:
+                for arrange in self._object["todo"]:
+                    if arrange["off_set"] == i:
+                        pass
+                    else:
+                        self.off_set = i
+                        data = self.to_dict()
+                        self._object.append(data)
+                    i += 1
+
 
     def save(self):
-        with open(self._file, "w")
+        self.reload()
+        # self._object["todo"] # todo: edit and dump back
+        with open(self._file, "w") as file:
+            json.dump(self._object, file, indent=2)
