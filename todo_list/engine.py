@@ -46,4 +46,5 @@ class TodoObject(object):
         self.reload()
         # self._object["todo"] # todo: edit and dump back
         with open(self._file, "w") as file:
-            json.dump(self._object, file, indent=2)
+            data = {"todo": self._object}
+            json.dump(data, file, indent=2)

@@ -7,7 +7,7 @@ from engine import TodoObject
 class Todo(cmd.Cmd):
     prompt = "(ToDoList): "
 
-    
+
     def do_prompt(self, prompt):
         """ Set the prompt message """
         if prompt:
@@ -15,7 +15,7 @@ class Todo(cmd.Cmd):
             if len(_prompts) > 1:
                 print("** Too many arguments **")
             else:
-                prompt += ":" if prompt[-1] != ":" else None
+                prompt += ":" if prompt[-1] != ":" and prompt[-2] != ":" else None
                 prompt += " " if prompt[-1] != " " else None
                 self.prompt = prompt
         else:
@@ -24,8 +24,17 @@ class Todo(cmd.Cmd):
     def do_add(self, task):
         """Add a new task to the todo_list"""
         if task:
-            todo_list = TodoObject()
-            todo_list.title = task
+            todo_list = TodoObject(task)
+            todo_list.description = input("Enter Description: ")
+            print("\nChoose from the priority")
+            while True:
+                priority = input("High(H), Medium(M) Low(L)::: ").lower()
+                if priority in ["high", "h", "low", "l", "medium", "m"]:
+                    todo_list.priority = priority
+                    break
+                else:
+                    print("** Invalid selection **\n")
+
             todo_list.save()
         else:
             print("** Missing Task **\nUsage: add task_title")
