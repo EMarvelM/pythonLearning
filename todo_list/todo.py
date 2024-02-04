@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+"""Todo list Interpreter"""
+
 import cmd
+from engine import TodoObject
 
 class Todo(cmd.Cmd):
     prompt = "(ToDoList): "
 
+    
     def do_prompt(self, prompt):
         """ Set the prompt message """
         if prompt:
@@ -16,7 +21,14 @@ class Todo(cmd.Cmd):
         else:
             print("** Missing Argument **")
 
-
+    def do_add(self, task):
+        """Add a new task to the todo_list"""
+        if task:
+            todo_list = TodoObject()
+            todo_list.title = task
+            todo_list.save()
+        else:
+            print("** Missing Task **\nUsage: add task_title")
 
 if __name__ == "__main__":
     Todo().cmdloop()
